@@ -3,7 +3,7 @@ from datetime import datetime, time, timedelta
 import openai
 
 # Clé API OpenAI (remplace par ta clé ou configure via une variable d'environnement)
-OPENAI_API_KEY = "key"
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 # Configuration de l'API OpenAI
 openai.api_key = OPENAI_API_KEY
