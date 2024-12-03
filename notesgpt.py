@@ -20,7 +20,7 @@ def format_notes_with_chatgpt(notes):
                     {"role": "user", "content": f"Remets en forme les notes de ma réunion : {notes}"}
                 ]
             )
-        print(response)
+        print("response test")
         reformatted_notes = response.choices[0].message['content']
         return reformatted_notes
 
