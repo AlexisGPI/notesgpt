@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime, time, timedelta
 import openai
-pip install --upgrade openai
+
 # Clé API OpenAI (remplace par ta clé ou configure via une variable d'environnement)
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
