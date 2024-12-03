@@ -13,6 +13,7 @@ def format_notes_with_chatgpt(notes):
     Fonction pour appeler l'API ChatGPT et reformater les notes.
     """
     try:
+        print(response)
         response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
