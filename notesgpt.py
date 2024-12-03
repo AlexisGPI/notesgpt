@@ -13,22 +13,22 @@ def format_notes_with_chatgpt(notes):
     Fonction pour appeler l'API OpenAI et reformater les notes.
     """
     try:
-        # Configuration de l'API OpenAI
+        # Appel à l'API OpenAI avec le nouveau format
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Utilise le modèle GPT-3.5 Turbo
+            model="gpt-3.5-turbo",  # Change le modèle si besoin
             messages=[
                 {"role": "system", "content": "Tu es un assistant spécialisé dans la reformulation de notes de réunion. Organise les informations de manière claire et concise."},
-                {"role": "user", "content": f"Remets en forme les notes suivantes : {notes}"}
+                {"role": "user", "content": f"Voici les notes à reformater : {notes}"}
             ],
-            temperature=0.7,  # Ajuste la créativité de l'assistant
-            max_tokens=1500  # Limite le nombre de mots dans la réponse
+            temperature=0.7,  # Ajuste la créativité
+            max_tokens=1500  # Définit le nombre maximal de tokens
         )
-        # Extraire le texte reformulé
-        reformatted_notes = response["choices"][0]["message"]["content"]
+        # Extraire et retourner le texte reformulé
+        reformatted_notes = response.choices[0].message["content"]
         return reformatted_notes
 
     except openai.error.OpenAIError as e:
-        # Gestion des erreurs de l'API OpenAI
+        # Gestion des erreurs spécifiques à OpenAI
         return f"Une erreur est survenue : {e}"
 
     except Exception as e:
