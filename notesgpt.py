@@ -10,11 +10,31 @@ openai.api_key = OPENAI_API_KEY
 
 def format_notes_with_chatgpt(notes):
     """
-    Fonction pour appeler l'API ChatGPT et reformater les notes.
+    Fonction pour appeler l'API OpenAI et reformater les notes.
     """
-    response = openai.ChatCompletion.create( model="gpt-3.5-turbo", messages=[{"role": "system", "content": "Tu es un assistant qui reformate les notes de réunion."},{"role": "user", "content": f"Remets en forme les notes de ma réunion : {notes}"}])
-    
-    return response
+    try:
+        # Configuration de l'API OpenAI
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Utilise le modèle GPT-3.5 Turbo
+            messages=[
+                {"role": "system", "content": "Tu es un assistant spécialisé dans la reformulation de notes de réunion. Organise les informations de manière claire et concise."},
+                {"role": "user", "content": f"Remets en forme les notes suivantes : {notes}"}
+            ],
+            temperature=0.7,  # Ajuste la créativité de l'assistant
+            max_tokens=1500  # Limite le nombre de mots dans la réponse
+        )
+        # Extraire le texte reformulé
+        reformatted_notes = response["choices"][0]["message"]["content"]
+        return reformatted_notes
+
+    except openai.error.OpenAIError as e:
+        # Gestion des erreurs de l'API OpenAI
+        return f"Une erreur est survenue : {e}"
+
+    except Exception as e:
+        # Gestion des autres erreurs
+        return f"Une erreur inattendue est survenue : {e}"
+
 
 # CSS personnalisé pour styliser la sidebar et le contenu
 st.markdown(
