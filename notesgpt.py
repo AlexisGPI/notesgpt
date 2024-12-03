@@ -14,12 +14,12 @@ def format_notes_with_chatgpt(notes):
     """
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Tu es un assistant qui reformate les notes de réunion."},
-                {"role": "user", "content": f"Remets en forme les notes de ma réunion : {notes}"}
-            ]
-        )
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Tu es un assistant qui reformate les notes de réunion."},
+                    {"role": "user", "content": f"Remets en forme les notes de ma réunion : {notes}"}
+                ]
+            )
         reformatted_notes = response.choices[0].message['content']
         return reformatted_notes
 
