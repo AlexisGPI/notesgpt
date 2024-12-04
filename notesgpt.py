@@ -1,39 +1,5 @@
 import streamlit as st
 from datetime import datetime, time, timedelta
-import openai
-
-# Clé API OpenAI (remplace par ta clé ou configure via une variable d'environnement)
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-
-# Configuration de l'API OpenAI
-openai.api_key = OPENAI_API_KEY
-
-def format_notes_with_chatgpt(notes):
-    """
-    Fonction pour appeler l'API OpenAI et reformater les notes.
-    """
-    try:
-        # Appel à l'API OpenAI
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Tu es un assistant qui reformate les notes de réunion."},
-                {"role": "user", "content": f"Voici les notes à reformater : {notes}"}
-            ],
-            temperature=0.7,
-            max_tokens=1500
-        )
-        reformatted_notes = response["choices"][0]["message"]["content"]
-        return reformatted_notes
-
-    except openai.OpenAIError as e:  # Correction ici
-        # Gérer les erreurs spécifiques à OpenAI
-        return f"Une erreur OpenAI est survenue : {str(e)}"
-
-    except Exception as e:
-        # Gérer les autres erreurs
-        return f"Une erreur inattendue est survenue : {str(e)}"
-
 
 # CSS personnalisé pour styliser la sidebar et le contenu
 st.markdown(
