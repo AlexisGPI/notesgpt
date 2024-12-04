@@ -60,16 +60,6 @@ elif active_tab == "📝 Notes":
         height=300
     )
 
-    if st.button("📄 Mise en forme des notes"):
-        if meeting_notes.strip():
-            with st.spinner("Reformulation des notes..."):
-                formatted_notes = format_notes_with_chatgpt(meeting_notes)
-            st.success("Notes reformulées avec succès !")
-            st.write("### Notes reformulées")
-            st.write(formatted_notes)
-        else:
-            st.warning("Veuillez d'abord entrer des notes.")
-
 elif active_tab == "📂 Documents":
     st.header("📂 Documents")
     uploaded_files = st.file_uploader("Dépose tes fichiers ici", accept_multiple_files=True)
